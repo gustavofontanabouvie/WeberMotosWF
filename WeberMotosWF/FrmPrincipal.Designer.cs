@@ -32,16 +32,27 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             tabPage3 = new TabPage();
-            materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            btnCadastrarPeca = new MaterialSkin.Controls.MaterialButton();
+            materialLabel14 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            materialTextBox2 = new MaterialSkin.Controls.MaterialTextBox();
-            materialTextBox1 = new MaterialSkin.Controls.MaterialTextBox();
+            txtPecaPrecoVenda = new MaterialSkin.Controls.MaterialTextBox();
+            txtPecaPreco = new MaterialSkin.Controls.MaterialTextBox();
+            txtPecaDescricao = new MaterialSkin.Controls.MaterialTextBox();
             TabPage1 = new TabPage();
+            materialCardEditar = new MaterialSkin.Controls.MaterialCard();
+            txtPrecoVendaEdit = new MaterialSkin.Controls.MaterialTextBox();
+            txtPrecoCompraEdit = new MaterialSkin.Controls.MaterialTextBox();
+            materialLabel13 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel11 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
+            txtDescricaoEdit = new MaterialSkin.Controls.MaterialTextBox();
+            btnSalvar = new MaterialSkin.Controls.MaterialButton();
+            btnCancelar = new MaterialSkin.Controls.MaterialButton();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
             btnExcluir = new MaterialSkin.Controls.MaterialButton();
             btnEditar = new MaterialSkin.Controls.MaterialButton();
-            dataGridView1 = new DataGridView();
+            dataGridViewPecas = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
@@ -68,14 +79,16 @@
             dataGridView2 = new DataGridView();
             Column5 = new DataGridViewTextBoxColumn();
             Column6 = new DataGridViewTextBoxColumn();
+            Column7 = new DataGridViewTextBoxColumn();
             materialCard3 = new MaterialSkin.Controls.MaterialCard();
             btnFinalizar = new MaterialSkin.Controls.MaterialButton();
             imageList1 = new ImageList(components);
             materialTabControl1.SuspendLayout();
             tabPage3.SuspendLayout();
             TabPage1.SuspendLayout();
+            materialCardEditar.SuspendLayout();
             materialCard1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewPecas).BeginInit();
             TabPage2.SuspendLayout();
             materialCard5.SuspendLayout();
             materialCard4.SuspendLayout();
@@ -101,42 +114,58 @@
             // 
             // tabPage3
             // 
-            tabPage3.Controls.Add(materialButton1);
+            tabPage3.Controls.Add(btnCadastrarPeca);
+            tabPage3.Controls.Add(materialLabel14);
             tabPage3.Controls.Add(materialLabel2);
             tabPage3.Controls.Add(materialLabel1);
-            tabPage3.Controls.Add(materialTextBox2);
-            tabPage3.Controls.Add(materialTextBox1);
+            tabPage3.Controls.Add(txtPecaPrecoVenda);
+            tabPage3.Controls.Add(txtPecaPreco);
+            tabPage3.Controls.Add(txtPecaDescricao);
             tabPage3.ImageKey = "iconmonstr-wrench-12-32.png";
             tabPage3.Location = new Point(4, 39);
             tabPage3.Name = "tabPage3";
             tabPage3.Size = new Size(936, 553);
             tabPage3.TabIndex = 2;
-            tabPage3.Text = "Add Peça";
+            tabPage3.Text = "Cadastrar Peça";
             tabPage3.UseVisualStyleBackColor = true;
-            tabPage3.Click += tabPage3_Click;
             // 
-            // materialButton1
+            // btnCadastrarPeca
             // 
-            materialButton1.Anchor = AnchorStyles.Top;
-            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton1.Cursor = Cursors.Hand;
-            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton1.Depth = 0;
-            materialButton1.Font = new Font("Microsoft YaHei", 8.25F);
-            materialButton1.HighEmphasis = true;
-            materialButton1.Icon = null;
-            materialButton1.Location = new Point(392, 305);
-            materialButton1.Margin = new Padding(4, 6, 4, 6);
-            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton1.Name = "materialButton1";
-            materialButton1.NoAccentTextColor = Color.Empty;
-            materialButton1.RightToLeft = RightToLeft.No;
-            materialButton1.Size = new Size(106, 36);
-            materialButton1.TabIndex = 12;
-            materialButton1.Text = "Cadastrar";
-            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton1.UseAccentColor = false;
-            materialButton1.UseVisualStyleBackColor = true;
+            btnCadastrarPeca.Anchor = AnchorStyles.Top;
+            btnCadastrarPeca.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCadastrarPeca.Cursor = Cursors.Hand;
+            btnCadastrarPeca.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnCadastrarPeca.Depth = 0;
+            btnCadastrarPeca.Font = new Font("Microsoft YaHei", 8.25F);
+            btnCadastrarPeca.HighEmphasis = true;
+            btnCadastrarPeca.Icon = null;
+            btnCadastrarPeca.Location = new Point(393, 413);
+            btnCadastrarPeca.Margin = new Padding(4, 6, 4, 6);
+            btnCadastrarPeca.MouseState = MaterialSkin.MouseState.HOVER;
+            btnCadastrarPeca.Name = "btnCadastrarPeca";
+            btnCadastrarPeca.NoAccentTextColor = Color.Empty;
+            btnCadastrarPeca.RightToLeft = RightToLeft.No;
+            btnCadastrarPeca.Size = new Size(106, 36);
+            btnCadastrarPeca.TabIndex = 12;
+            btnCadastrarPeca.Text = "Cadastrar";
+            btnCadastrarPeca.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnCadastrarPeca.UseAccentColor = false;
+            btnCadastrarPeca.UseVisualStyleBackColor = true;
+            btnCadastrarPeca.Click += btnCadastrarPeca_Click;
+            // 
+            // materialLabel14
+            // 
+            materialLabel14.Anchor = AnchorStyles.Top;
+            materialLabel14.AutoSize = true;
+            materialLabel14.Depth = 0;
+            materialLabel14.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel14.Location = new Point(148, 283);
+            materialLabel14.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel14.Name = "materialLabel14";
+            materialLabel14.RightToLeft = RightToLeft.No;
+            materialLabel14.Size = new Size(111, 19);
+            materialLabel14.TabIndex = 10;
+            materialLabel14.Text = "Preço de Venda";
             // 
             // materialLabel2
             // 
@@ -144,7 +173,7 @@
             materialLabel2.AutoSize = true;
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(148, 225);
+            materialLabel2.Location = new Point(148, 197);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
             materialLabel2.RightToLeft = RightToLeft.No;
@@ -158,7 +187,7 @@
             materialLabel1.AutoSize = true;
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(148, 116);
+            materialLabel1.Location = new Point(148, 115);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
             materialLabel1.RightToLeft = RightToLeft.No;
@@ -166,58 +195,233 @@
             materialLabel1.TabIndex = 11;
             materialLabel1.Text = "Nome da peça";
             // 
-            // materialTextBox2
+            // txtPecaPrecoVenda
             // 
-            materialTextBox2.Anchor = AnchorStyles.Top;
-            materialTextBox2.AnimateReadOnly = false;
-            materialTextBox2.BorderStyle = BorderStyle.None;
-            materialTextBox2.Depth = 0;
-            materialTextBox2.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox2.Hint = "Ex: 50,00";
-            materialTextBox2.LeadingIcon = null;
-            materialTextBox2.Location = new Point(312, 208);
-            materialTextBox2.MaxLength = 50;
-            materialTextBox2.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox2.Multiline = false;
-            materialTextBox2.Name = "materialTextBox2";
-            materialTextBox2.RightToLeft = RightToLeft.No;
-            materialTextBox2.Size = new Size(306, 50);
-            materialTextBox2.TabIndex = 8;
-            materialTextBox2.Text = "";
-            materialTextBox2.TrailingIcon = null;
+            txtPecaPrecoVenda.Anchor = AnchorStyles.Top;
+            txtPecaPrecoVenda.AnimateReadOnly = false;
+            txtPecaPrecoVenda.BorderStyle = BorderStyle.None;
+            txtPecaPrecoVenda.Depth = 0;
+            txtPecaPrecoVenda.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtPecaPrecoVenda.Hint = "Ex: 50,00";
+            txtPecaPrecoVenda.LeadingIcon = null;
+            txtPecaPrecoVenda.Location = new Point(312, 267);
+            txtPecaPrecoVenda.MaxLength = 50;
+            txtPecaPrecoVenda.MouseState = MaterialSkin.MouseState.OUT;
+            txtPecaPrecoVenda.Multiline = false;
+            txtPecaPrecoVenda.Name = "txtPecaPrecoVenda";
+            txtPecaPrecoVenda.RightToLeft = RightToLeft.No;
+            txtPecaPrecoVenda.Size = new Size(306, 50);
+            txtPecaPrecoVenda.TabIndex = 8;
+            txtPecaPrecoVenda.Text = "";
+            txtPecaPrecoVenda.TrailingIcon = null;
             // 
-            // materialTextBox1
+            // txtPecaPreco
             // 
-            materialTextBox1.Anchor = AnchorStyles.Top;
-            materialTextBox1.AnimateReadOnly = false;
-            materialTextBox1.BorderStyle = BorderStyle.None;
-            materialTextBox1.Depth = 0;
-            materialTextBox1.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox1.Hint = "Ex: Pastilha de freio CG 160";
-            materialTextBox1.LeadingIcon = null;
-            materialTextBox1.Location = new Point(312, 97);
-            materialTextBox1.MaxLength = 50;
-            materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox1.Multiline = false;
-            materialTextBox1.Name = "materialTextBox1";
-            materialTextBox1.RightToLeft = RightToLeft.No;
-            materialTextBox1.Size = new Size(306, 50);
-            materialTextBox1.TabIndex = 9;
-            materialTextBox1.Text = "";
-            materialTextBox1.TrailingIcon = null;
+            txtPecaPreco.Anchor = AnchorStyles.Top;
+            txtPecaPreco.AnimateReadOnly = false;
+            txtPecaPreco.BorderStyle = BorderStyle.None;
+            txtPecaPreco.Depth = 0;
+            txtPecaPreco.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtPecaPreco.Hint = "Ex: 50,00";
+            txtPecaPreco.LeadingIcon = null;
+            txtPecaPreco.Location = new Point(312, 180);
+            txtPecaPreco.MaxLength = 50;
+            txtPecaPreco.MouseState = MaterialSkin.MouseState.OUT;
+            txtPecaPreco.Multiline = false;
+            txtPecaPreco.Name = "txtPecaPreco";
+            txtPecaPreco.RightToLeft = RightToLeft.No;
+            txtPecaPreco.Size = new Size(306, 50);
+            txtPecaPreco.TabIndex = 8;
+            txtPecaPreco.Text = "";
+            txtPecaPreco.TrailingIcon = null;
+            // 
+            // txtPecaDescricao
+            // 
+            txtPecaDescricao.Anchor = AnchorStyles.Top;
+            txtPecaDescricao.AnimateReadOnly = false;
+            txtPecaDescricao.BorderStyle = BorderStyle.None;
+            txtPecaDescricao.Depth = 0;
+            txtPecaDescricao.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtPecaDescricao.Hint = "Ex: Pastilha de freio CG 160";
+            txtPecaDescricao.LeadingIcon = null;
+            txtPecaDescricao.Location = new Point(312, 95);
+            txtPecaDescricao.MaxLength = 50;
+            txtPecaDescricao.MouseState = MaterialSkin.MouseState.OUT;
+            txtPecaDescricao.Multiline = false;
+            txtPecaDescricao.Name = "txtPecaDescricao";
+            txtPecaDescricao.RightToLeft = RightToLeft.No;
+            txtPecaDescricao.Size = new Size(306, 50);
+            txtPecaDescricao.TabIndex = 9;
+            txtPecaDescricao.Text = "";
+            txtPecaDescricao.TrailingIcon = null;
             // 
             // TabPage1
             // 
+            TabPage1.Controls.Add(materialCardEditar);
             TabPage1.Controls.Add(materialCard1);
-            TabPage1.Controls.Add(dataGridView1);
+            TabPage1.Controls.Add(dataGridViewPecas);
             TabPage1.ImageKey = "iconmonstr-wrench-24-32.png";
             TabPage1.Location = new Point(4, 39);
             TabPage1.Name = "TabPage1";
             TabPage1.Padding = new Padding(3);
             TabPage1.Size = new Size(936, 553);
             TabPage1.TabIndex = 0;
-            TabPage1.Text = "Peças";
+            TabPage1.Text = "Listar Peças";
             TabPage1.UseVisualStyleBackColor = true;
+            // 
+            // materialCardEditar
+            // 
+            materialCardEditar.BackColor = Color.FromArgb(255, 255, 255);
+            materialCardEditar.Controls.Add(txtPrecoVendaEdit);
+            materialCardEditar.Controls.Add(txtPrecoCompraEdit);
+            materialCardEditar.Controls.Add(materialLabel13);
+            materialCardEditar.Controls.Add(materialLabel11);
+            materialCardEditar.Controls.Add(materialLabel12);
+            materialCardEditar.Controls.Add(txtDescricaoEdit);
+            materialCardEditar.Controls.Add(btnSalvar);
+            materialCardEditar.Controls.Add(btnCancelar);
+            materialCardEditar.Depth = 0;
+            materialCardEditar.Dock = DockStyle.Bottom;
+            materialCardEditar.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCardEditar.Location = new Point(3, 204);
+            materialCardEditar.Margin = new Padding(14);
+            materialCardEditar.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCardEditar.Name = "materialCardEditar";
+            materialCardEditar.Padding = new Padding(14);
+            materialCardEditar.Size = new Size(930, 297);
+            materialCardEditar.TabIndex = 2;
+            materialCardEditar.Visible = false;
+            // 
+            // txtPrecoVendaEdit
+            // 
+            txtPrecoVendaEdit.AnimateReadOnly = false;
+            txtPrecoVendaEdit.BorderStyle = BorderStyle.None;
+            txtPrecoVendaEdit.Depth = 0;
+            txtPrecoVendaEdit.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtPrecoVendaEdit.LeadingIcon = null;
+            txtPrecoVendaEdit.Location = new Point(311, 164);
+            txtPrecoVendaEdit.MaxLength = 50;
+            txtPrecoVendaEdit.MouseState = MaterialSkin.MouseState.OUT;
+            txtPrecoVendaEdit.Multiline = false;
+            txtPrecoVendaEdit.Name = "txtPrecoVendaEdit";
+            txtPrecoVendaEdit.Size = new Size(358, 50);
+            txtPrecoVendaEdit.TabIndex = 5;
+            txtPrecoVendaEdit.Text = "";
+            txtPrecoVendaEdit.TrailingIcon = null;
+            // 
+            // txtPrecoCompraEdit
+            // 
+            txtPrecoCompraEdit.AnimateReadOnly = false;
+            txtPrecoCompraEdit.BorderStyle = BorderStyle.None;
+            txtPrecoCompraEdit.Depth = 0;
+            txtPrecoCompraEdit.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtPrecoCompraEdit.LeadingIcon = null;
+            txtPrecoCompraEdit.Location = new Point(311, 89);
+            txtPrecoCompraEdit.MaxLength = 50;
+            txtPrecoCompraEdit.MouseState = MaterialSkin.MouseState.OUT;
+            txtPrecoCompraEdit.Multiline = false;
+            txtPrecoCompraEdit.Name = "txtPrecoCompraEdit";
+            txtPrecoCompraEdit.Size = new Size(358, 50);
+            txtPrecoCompraEdit.TabIndex = 4;
+            txtPrecoCompraEdit.Text = "";
+            txtPrecoCompraEdit.TrailingIcon = null;
+            // 
+            // materialLabel13
+            // 
+            materialLabel13.AutoSize = true;
+            materialLabel13.Depth = 0;
+            materialLabel13.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel13.Location = new Point(215, 27);
+            materialLabel13.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel13.Name = "materialLabel13";
+            materialLabel13.Size = new Size(71, 19);
+            materialLabel13.TabIndex = 3;
+            materialLabel13.Text = "Descrição";
+            // 
+            // materialLabel11
+            // 
+            materialLabel11.AutoSize = true;
+            materialLabel11.Depth = 0;
+            materialLabel11.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel11.Location = new Point(180, 181);
+            materialLabel11.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel11.Name = "materialLabel11";
+            materialLabel11.Size = new Size(109, 19);
+            materialLabel11.TabIndex = 3;
+            materialLabel11.Text = "Preço de venda";
+            // 
+            // materialLabel12
+            // 
+            materialLabel12.AutoSize = true;
+            materialLabel12.Depth = 0;
+            materialLabel12.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel12.Location = new Point(180, 104);
+            materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel12.Name = "materialLabel12";
+            materialLabel12.Size = new Size(120, 19);
+            materialLabel12.TabIndex = 3;
+            materialLabel12.Text = "Preço de compra";
+            // 
+            // txtDescricaoEdit
+            // 
+            txtDescricaoEdit.AnimateReadOnly = false;
+            txtDescricaoEdit.BorderStyle = BorderStyle.None;
+            txtDescricaoEdit.Depth = 0;
+            txtDescricaoEdit.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtDescricaoEdit.LeadingIcon = null;
+            txtDescricaoEdit.Location = new Point(311, 25);
+            txtDescricaoEdit.MaxLength = 50;
+            txtDescricaoEdit.MouseState = MaterialSkin.MouseState.OUT;
+            txtDescricaoEdit.Multiline = false;
+            txtDescricaoEdit.Name = "txtDescricaoEdit";
+            txtDescricaoEdit.Size = new Size(358, 50);
+            txtDescricaoEdit.TabIndex = 2;
+            txtDescricaoEdit.Text = "";
+            txtDescricaoEdit.TrailingIcon = null;
+            // 
+            // btnSalvar
+            // 
+            btnSalvar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnSalvar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnSalvar.Cursor = Cursors.Hand;
+            btnSalvar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnSalvar.Depth = 0;
+            btnSalvar.HighEmphasis = true;
+            btnSalvar.Icon = null;
+            btnSalvar.Location = new Point(371, 241);
+            btnSalvar.Margin = new Padding(4, 6, 4, 6);
+            btnSalvar.MouseState = MaterialSkin.MouseState.HOVER;
+            btnSalvar.Name = "btnSalvar";
+            btnSalvar.NoAccentTextColor = Color.Empty;
+            btnSalvar.Size = new Size(76, 36);
+            btnSalvar.TabIndex = 1;
+            btnSalvar.Text = "Salvar";
+            btnSalvar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnSalvar.UseAccentColor = false;
+            btnSalvar.UseVisualStyleBackColor = true;
+            btnSalvar.Click += btnSalvar_Click;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnCancelar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCancelar.Cursor = Cursors.Hand;
+            btnCancelar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnCancelar.Depth = 0;
+            btnCancelar.HighEmphasis = true;
+            btnCancelar.Icon = null;
+            btnCancelar.Location = new Point(455, 241);
+            btnCancelar.Margin = new Padding(4, 6, 4, 6);
+            btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.NoAccentTextColor = Color.Empty;
+            btnCancelar.Size = new Size(96, 36);
+            btnCancelar.TabIndex = 1;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnCancelar.UseAccentColor = false;
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // materialCard1
             // 
@@ -254,6 +458,7 @@
             btnExcluir.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnExcluir.UseAccentColor = false;
             btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnEditar
             // 
@@ -274,17 +479,19 @@
             btnEditar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnEditar.UseAccentColor = false;
             btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
-            // dataGridView1
+            // dataGridViewPecas
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4 });
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.GridColor = SystemColors.ScrollBar;
-            dataGridView1.Location = new Point(3, 3);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(930, 547);
-            dataGridView1.TabIndex = 0;
+            dataGridViewPecas.BackgroundColor = Color.SlateGray;
+            dataGridViewPecas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewPecas.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4 });
+            dataGridViewPecas.Dock = DockStyle.Top;
+            dataGridViewPecas.GridColor = SystemColors.ActiveCaptionText;
+            dataGridViewPecas.Location = new Point(3, 3);
+            dataGridViewPecas.Name = "dataGridViewPecas";
+            dataGridViewPecas.Size = new Size(930, 547);
+            dataGridViewPecas.TabIndex = 0;
             // 
             // Column1
             // 
@@ -619,7 +826,7 @@
             // 
             dataGridView2.Anchor = AnchorStyles.Top;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { Column5, Column6 });
+            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { Column5, Column6, Column7 });
             dataGridView2.Location = new Point(14, 14);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.Size = new Size(902, 104);
@@ -635,6 +842,11 @@
             // 
             Column6.HeaderText = "Valor";
             Column6.Name = "Column6";
+            // 
+            // Column7
+            // 
+            Column7.HeaderText = "Quantidade";
+            Column7.Name = "Column7";
             // 
             // materialCard3
             // 
@@ -698,9 +910,11 @@
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             TabPage1.ResumeLayout(false);
+            materialCardEditar.ResumeLayout(false);
+            materialCardEditar.PerformLayout();
             materialCard1.ResumeLayout(false);
             materialCard1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewPecas).EndInit();
             TabPage2.ResumeLayout(false);
             materialCard5.ResumeLayout(false);
             materialCard5.PerformLayout();
@@ -718,7 +932,7 @@
         private TabPage TabPage2;
         private ImageList imageList1;
         private TabPage tabPage3;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewPecas;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
@@ -747,12 +961,24 @@
         private MaterialSkin.Controls.MaterialTextBox materialTextBox7;
         private MaterialSkin.Controls.MaterialTextBox materialTextBox6;
         private MaterialSkin.Controls.MaterialTextBox materialTextBox8;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
+        private MaterialSkin.Controls.MaterialButton btnCadastrarPeca;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox2;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox1;
+        private MaterialSkin.Controls.MaterialTextBox txtPecaPreco;
+        private MaterialSkin.Controls.MaterialTextBox txtPecaDescricao;
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;
+        private DataGridViewTextBoxColumn Column7;
+        private MaterialSkin.Controls.MaterialCard materialCardEditar;
+        private MaterialSkin.Controls.MaterialButton btnSalvar;
+        private MaterialSkin.Controls.MaterialButton btnCancelar;
+        private MaterialSkin.Controls.MaterialLabel materialLabel13;
+        private MaterialSkin.Controls.MaterialLabel materialLabel12;
+        private MaterialSkin.Controls.MaterialTextBox txtDescricaoEdit;
+        private MaterialSkin.Controls.MaterialTextBox txtPrecoVendaEdit;
+        private MaterialSkin.Controls.MaterialTextBox txtPrecoCompraEdit;
+        private MaterialSkin.Controls.MaterialLabel materialLabel11;
+        private MaterialSkin.Controls.MaterialLabel materialLabel14;
+        private MaterialSkin.Controls.MaterialTextBox txtPecaPrecoVenda;
     }
 }
