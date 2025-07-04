@@ -59,9 +59,9 @@
             Column4 = new DataGridViewTextBoxColumn();
             TabPage2 = new TabPage();
             materialCard5 = new MaterialSkin.Controls.MaterialCard();
-            dateTimePicker1 = new DateTimePicker();
-            materialButton2 = new MaterialSkin.Controls.MaterialButton();
-            materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
+            datePickerDataVenda = new DateTimePicker();
+            btnAdicionarPeca = new MaterialSkin.Controls.MaterialButton();
+            cbxPecasUtilizadas = new MaterialSkin.Controls.MaterialComboBox();
             materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
@@ -70,13 +70,13 @@
             materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
-            materialTextBox7 = new MaterialSkin.Controls.MaterialTextBox();
-            materialTextBox6 = new MaterialSkin.Controls.MaterialTextBox();
-            materialTextBox8 = new MaterialSkin.Controls.MaterialTextBox();
-            materialTextBox5 = new MaterialSkin.Controls.MaterialTextBox();
-            materialTextBox3 = new MaterialSkin.Controls.MaterialTextBox();
+            txtPlacaMoto = new MaterialSkin.Controls.MaterialTextBox();
+            txtModeloMoto = new MaterialSkin.Controls.MaterialTextBox();
+            txtCliente = new MaterialSkin.Controls.MaterialTextBox();
+            txtHorasTrabalhadas = new MaterialSkin.Controls.MaterialTextBox();
+            txtDescricaoVenda = new MaterialSkin.Controls.MaterialTextBox();
             materialCard4 = new MaterialSkin.Controls.MaterialCard();
-            dataGridView2 = new DataGridView();
+            dataGridViewPecasUtilizadas = new DataGridView();
             Column5 = new DataGridViewTextBoxColumn();
             Column6 = new DataGridViewTextBoxColumn();
             Column7 = new DataGridViewTextBoxColumn();
@@ -92,7 +92,7 @@
             TabPage2.SuspendLayout();
             materialCard5.SuspendLayout();
             materialCard4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewPecasUtilizadas).BeginInit();
             materialCard3.SuspendLayout();
             SuspendLayout();
             // 
@@ -535,9 +535,9 @@
             // materialCard5
             // 
             materialCard5.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard5.Controls.Add(dateTimePicker1);
-            materialCard5.Controls.Add(materialButton2);
-            materialCard5.Controls.Add(materialComboBox1);
+            materialCard5.Controls.Add(datePickerDataVenda);
+            materialCard5.Controls.Add(btnAdicionarPeca);
+            materialCard5.Controls.Add(cbxPecasUtilizadas);
             materialCard5.Controls.Add(materialLabel6);
             materialCard5.Controls.Add(materialLabel4);
             materialCard5.Controls.Add(materialLabel8);
@@ -546,11 +546,11 @@
             materialCard5.Controls.Add(materialLabel9);
             materialCard5.Controls.Add(materialLabel5);
             materialCard5.Controls.Add(materialLabel3);
-            materialCard5.Controls.Add(materialTextBox7);
-            materialCard5.Controls.Add(materialTextBox6);
-            materialCard5.Controls.Add(materialTextBox8);
-            materialCard5.Controls.Add(materialTextBox5);
-            materialCard5.Controls.Add(materialTextBox3);
+            materialCard5.Controls.Add(txtPlacaMoto);
+            materialCard5.Controls.Add(txtModeloMoto);
+            materialCard5.Controls.Add(txtCliente);
+            materialCard5.Controls.Add(txtHorasTrabalhadas);
+            materialCard5.Controls.Add(txtDescricaoVenda);
             materialCard5.Depth = 0;
             materialCard5.Dock = DockStyle.Fill;
             materialCard5.ForeColor = Color.FromArgb(222, 0, 0, 0);
@@ -562,56 +562,57 @@
             materialCard5.Size = new Size(930, 328);
             materialCard5.TabIndex = 3;
             // 
-            // dateTimePicker1
+            // datePickerDataVenda
             // 
-            dateTimePicker1.Anchor = AnchorStyles.Top;
-            dateTimePicker1.Location = new Point(192, 102);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(264, 23);
-            dateTimePicker1.TabIndex = 4;
+            datePickerDataVenda.Anchor = AnchorStyles.Top;
+            datePickerDataVenda.Location = new Point(192, 102);
+            datePickerDataVenda.Name = "datePickerDataVenda";
+            datePickerDataVenda.Size = new Size(264, 23);
+            datePickerDataVenda.TabIndex = 4;
             // 
-            // materialButton2
+            // btnAdicionarPeca
             // 
-            materialButton2.Anchor = AnchorStyles.Top;
-            materialButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton2.Depth = 0;
-            materialButton2.HighEmphasis = true;
-            materialButton2.Icon = null;
-            materialButton2.Location = new Point(489, 272);
-            materialButton2.Margin = new Padding(4, 6, 4, 6);
-            materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton2.Name = "materialButton2";
-            materialButton2.NoAccentTextColor = Color.Empty;
-            materialButton2.Size = new Size(64, 36);
-            materialButton2.TabIndex = 3;
-            materialButton2.Text = "+";
-            materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton2.UseAccentColor = false;
-            materialButton2.UseVisualStyleBackColor = true;
+            btnAdicionarPeca.Anchor = AnchorStyles.Top;
+            btnAdicionarPeca.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnAdicionarPeca.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnAdicionarPeca.Depth = 0;
+            btnAdicionarPeca.HighEmphasis = true;
+            btnAdicionarPeca.Icon = null;
+            btnAdicionarPeca.Location = new Point(489, 272);
+            btnAdicionarPeca.Margin = new Padding(4, 6, 4, 6);
+            btnAdicionarPeca.MouseState = MaterialSkin.MouseState.HOVER;
+            btnAdicionarPeca.Name = "btnAdicionarPeca";
+            btnAdicionarPeca.NoAccentTextColor = Color.Empty;
+            btnAdicionarPeca.Size = new Size(64, 36);
+            btnAdicionarPeca.TabIndex = 3;
+            btnAdicionarPeca.Text = "+";
+            btnAdicionarPeca.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnAdicionarPeca.UseAccentColor = false;
+            btnAdicionarPeca.UseVisualStyleBackColor = true;
+            btnAdicionarPeca.Click += btnAdicionaPeca_Click;
             // 
-            // materialComboBox1
+            // cbxPecasUtilizadas
             // 
-            materialComboBox1.Anchor = AnchorStyles.Top;
-            materialComboBox1.AutoResize = false;
-            materialComboBox1.BackColor = Color.FromArgb(255, 255, 255);
-            materialComboBox1.Depth = 0;
-            materialComboBox1.DrawMode = DrawMode.OwnerDrawVariable;
-            materialComboBox1.DropDownHeight = 174;
-            materialComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            materialComboBox1.DropDownWidth = 121;
-            materialComboBox1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialComboBox1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialComboBox1.FormattingEnabled = true;
-            materialComboBox1.IntegralHeight = false;
-            materialComboBox1.ItemHeight = 43;
-            materialComboBox1.Location = new Point(192, 262);
-            materialComboBox1.MaxDropDownItems = 4;
-            materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
-            materialComboBox1.Name = "materialComboBox1";
-            materialComboBox1.Size = new Size(264, 49);
-            materialComboBox1.StartIndex = 0;
-            materialComboBox1.TabIndex = 2;
+            cbxPecasUtilizadas.Anchor = AnchorStyles.Top;
+            cbxPecasUtilizadas.AutoResize = false;
+            cbxPecasUtilizadas.BackColor = Color.FromArgb(255, 255, 255);
+            cbxPecasUtilizadas.Depth = 0;
+            cbxPecasUtilizadas.DrawMode = DrawMode.OwnerDrawVariable;
+            cbxPecasUtilizadas.DropDownHeight = 174;
+            cbxPecasUtilizadas.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxPecasUtilizadas.DropDownWidth = 121;
+            cbxPecasUtilizadas.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            cbxPecasUtilizadas.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            cbxPecasUtilizadas.FormattingEnabled = true;
+            cbxPecasUtilizadas.IntegralHeight = false;
+            cbxPecasUtilizadas.ItemHeight = 43;
+            cbxPecasUtilizadas.Location = new Point(192, 262);
+            cbxPecasUtilizadas.MaxDropDownItems = 4;
+            cbxPecasUtilizadas.MouseState = MaterialSkin.MouseState.OUT;
+            cbxPecasUtilizadas.Name = "cbxPecasUtilizadas";
+            cbxPecasUtilizadas.Size = new Size(264, 49);
+            cbxPecasUtilizadas.StartIndex = 0;
+            cbxPecasUtilizadas.TabIndex = 2;
             // 
             // materialLabel6
             // 
@@ -717,100 +718,100 @@
             materialLabel3.TabIndex = 1;
             materialLabel3.Text = "Descrição do serviço";
             // 
-            // materialTextBox7
+            // txtPlacaMoto
             // 
-            materialTextBox7.Anchor = AnchorStyles.Top;
-            materialTextBox7.AnimateReadOnly = false;
-            materialTextBox7.BorderStyle = BorderStyle.None;
-            materialTextBox7.Depth = 0;
-            materialTextBox7.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox7.LeadingIcon = null;
-            materialTextBox7.Location = new Point(661, 84);
-            materialTextBox7.MaxLength = 50;
-            materialTextBox7.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox7.Multiline = false;
-            materialTextBox7.Name = "materialTextBox7";
-            materialTextBox7.Size = new Size(264, 50);
-            materialTextBox7.TabIndex = 0;
-            materialTextBox7.Text = "";
-            materialTextBox7.TrailingIcon = null;
+            txtPlacaMoto.Anchor = AnchorStyles.Top;
+            txtPlacaMoto.AnimateReadOnly = false;
+            txtPlacaMoto.BorderStyle = BorderStyle.None;
+            txtPlacaMoto.Depth = 0;
+            txtPlacaMoto.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtPlacaMoto.LeadingIcon = null;
+            txtPlacaMoto.Location = new Point(661, 84);
+            txtPlacaMoto.MaxLength = 50;
+            txtPlacaMoto.MouseState = MaterialSkin.MouseState.OUT;
+            txtPlacaMoto.Multiline = false;
+            txtPlacaMoto.Name = "txtPlacaMoto";
+            txtPlacaMoto.Size = new Size(264, 50);
+            txtPlacaMoto.TabIndex = 0;
+            txtPlacaMoto.Text = "";
+            txtPlacaMoto.TrailingIcon = null;
             // 
-            // materialTextBox6
+            // txtModeloMoto
             // 
-            materialTextBox6.Anchor = AnchorStyles.Top;
-            materialTextBox6.AnimateReadOnly = false;
-            materialTextBox6.BorderStyle = BorderStyle.None;
-            materialTextBox6.Depth = 0;
-            materialTextBox6.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox6.LeadingIcon = null;
-            materialTextBox6.Location = new Point(661, 151);
-            materialTextBox6.MaxLength = 50;
-            materialTextBox6.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox6.Multiline = false;
-            materialTextBox6.Name = "materialTextBox6";
-            materialTextBox6.Size = new Size(264, 50);
-            materialTextBox6.TabIndex = 0;
-            materialTextBox6.Text = "";
-            materialTextBox6.TrailingIcon = null;
+            txtModeloMoto.Anchor = AnchorStyles.Top;
+            txtModeloMoto.AnimateReadOnly = false;
+            txtModeloMoto.BorderStyle = BorderStyle.None;
+            txtModeloMoto.Depth = 0;
+            txtModeloMoto.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtModeloMoto.LeadingIcon = null;
+            txtModeloMoto.Location = new Point(661, 151);
+            txtModeloMoto.MaxLength = 50;
+            txtModeloMoto.MouseState = MaterialSkin.MouseState.OUT;
+            txtModeloMoto.Multiline = false;
+            txtModeloMoto.Name = "txtModeloMoto";
+            txtModeloMoto.Size = new Size(264, 50);
+            txtModeloMoto.TabIndex = 0;
+            txtModeloMoto.Text = "";
+            txtModeloMoto.TrailingIcon = null;
             // 
-            // materialTextBox8
+            // txtCliente
             // 
-            materialTextBox8.Anchor = AnchorStyles.Top;
-            materialTextBox8.AnimateReadOnly = false;
-            materialTextBox8.BorderStyle = BorderStyle.None;
-            materialTextBox8.Depth = 0;
-            materialTextBox8.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox8.LeadingIcon = null;
-            materialTextBox8.Location = new Point(192, 206);
-            materialTextBox8.MaxLength = 50;
-            materialTextBox8.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox8.Multiline = false;
-            materialTextBox8.Name = "materialTextBox8";
-            materialTextBox8.Size = new Size(264, 50);
-            materialTextBox8.TabIndex = 0;
-            materialTextBox8.Text = "";
-            materialTextBox8.TrailingIcon = null;
+            txtCliente.Anchor = AnchorStyles.Top;
+            txtCliente.AnimateReadOnly = false;
+            txtCliente.BorderStyle = BorderStyle.None;
+            txtCliente.Depth = 0;
+            txtCliente.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtCliente.LeadingIcon = null;
+            txtCliente.Location = new Point(192, 206);
+            txtCliente.MaxLength = 50;
+            txtCliente.MouseState = MaterialSkin.MouseState.OUT;
+            txtCliente.Multiline = false;
+            txtCliente.Name = "txtCliente";
+            txtCliente.Size = new Size(264, 50);
+            txtCliente.TabIndex = 0;
+            txtCliente.Text = "";
+            txtCliente.TrailingIcon = null;
             // 
-            // materialTextBox5
+            // txtHorasTrabalhadas
             // 
-            materialTextBox5.Anchor = AnchorStyles.Top;
-            materialTextBox5.AnimateReadOnly = false;
-            materialTextBox5.BorderStyle = BorderStyle.None;
-            materialTextBox5.Depth = 0;
-            materialTextBox5.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox5.LeadingIcon = null;
-            materialTextBox5.Location = new Point(192, 151);
-            materialTextBox5.MaxLength = 50;
-            materialTextBox5.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox5.Multiline = false;
-            materialTextBox5.Name = "materialTextBox5";
-            materialTextBox5.Size = new Size(264, 50);
-            materialTextBox5.TabIndex = 0;
-            materialTextBox5.Text = "";
-            materialTextBox5.TrailingIcon = null;
+            txtHorasTrabalhadas.Anchor = AnchorStyles.Top;
+            txtHorasTrabalhadas.AnimateReadOnly = false;
+            txtHorasTrabalhadas.BorderStyle = BorderStyle.None;
+            txtHorasTrabalhadas.Depth = 0;
+            txtHorasTrabalhadas.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtHorasTrabalhadas.LeadingIcon = null;
+            txtHorasTrabalhadas.Location = new Point(192, 151);
+            txtHorasTrabalhadas.MaxLength = 50;
+            txtHorasTrabalhadas.MouseState = MaterialSkin.MouseState.OUT;
+            txtHorasTrabalhadas.Multiline = false;
+            txtHorasTrabalhadas.Name = "txtHorasTrabalhadas";
+            txtHorasTrabalhadas.Size = new Size(264, 50);
+            txtHorasTrabalhadas.TabIndex = 0;
+            txtHorasTrabalhadas.Text = "";
+            txtHorasTrabalhadas.TrailingIcon = null;
             // 
-            // materialTextBox3
+            // txtDescricaoVenda
             // 
-            materialTextBox3.Anchor = AnchorStyles.Top;
-            materialTextBox3.AnimateReadOnly = false;
-            materialTextBox3.BorderStyle = BorderStyle.None;
-            materialTextBox3.Depth = 0;
-            materialTextBox3.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox3.LeadingIcon = null;
-            materialTextBox3.Location = new Point(192, 19);
-            materialTextBox3.MaxLength = 50;
-            materialTextBox3.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox3.Multiline = false;
-            materialTextBox3.Name = "materialTextBox3";
-            materialTextBox3.Size = new Size(733, 50);
-            materialTextBox3.TabIndex = 0;
-            materialTextBox3.Text = "";
-            materialTextBox3.TrailingIcon = null;
+            txtDescricaoVenda.Anchor = AnchorStyles.Top;
+            txtDescricaoVenda.AnimateReadOnly = false;
+            txtDescricaoVenda.BorderStyle = BorderStyle.None;
+            txtDescricaoVenda.Depth = 0;
+            txtDescricaoVenda.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtDescricaoVenda.LeadingIcon = null;
+            txtDescricaoVenda.Location = new Point(192, 19);
+            txtDescricaoVenda.MaxLength = 50;
+            txtDescricaoVenda.MouseState = MaterialSkin.MouseState.OUT;
+            txtDescricaoVenda.Multiline = false;
+            txtDescricaoVenda.Name = "txtDescricaoVenda";
+            txtDescricaoVenda.Size = new Size(733, 50);
+            txtDescricaoVenda.TabIndex = 0;
+            txtDescricaoVenda.Text = "";
+            txtDescricaoVenda.TrailingIcon = null;
             // 
             // materialCard4
             // 
             materialCard4.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard4.Controls.Add(dataGridView2);
+            materialCard4.Controls.Add(dataGridViewPecasUtilizadas);
             materialCard4.Depth = 0;
             materialCard4.Dock = DockStyle.Bottom;
             materialCard4.ForeColor = Color.FromArgb(222, 0, 0, 0);
@@ -822,15 +823,16 @@
             materialCard4.Size = new Size(930, 174);
             materialCard4.TabIndex = 2;
             // 
-            // dataGridView2
+            // dataGridViewPecasUtilizadas
             // 
-            dataGridView2.Anchor = AnchorStyles.Top;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { Column5, Column6, Column7 });
-            dataGridView2.Location = new Point(14, 14);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(902, 104);
-            dataGridView2.TabIndex = 0;
+            dataGridViewPecasUtilizadas.Anchor = AnchorStyles.Top;
+            dataGridViewPecasUtilizadas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewPecasUtilizadas.Columns.AddRange(new DataGridViewColumn[] { Column5, Column6, Column7 });
+            dataGridViewPecasUtilizadas.GridColor = SystemColors.InactiveCaptionText;
+            dataGridViewPecasUtilizadas.Location = new Point(14, 14);
+            dataGridViewPecasUtilizadas.Name = "dataGridViewPecasUtilizadas";
+            dataGridViewPecasUtilizadas.Size = new Size(902, 104);
+            dataGridViewPecasUtilizadas.TabIndex = 0;
             // 
             // Column5
             // 
@@ -883,6 +885,7 @@
             btnFinalizar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnFinalizar.UseAccentColor = false;
             btnFinalizar.UseVisualStyleBackColor = true;
+            btnFinalizar.Click += btnFinalizar_Click;
             // 
             // imageList1
             // 
@@ -919,7 +922,7 @@
             materialCard5.ResumeLayout(false);
             materialCard5.PerformLayout();
             materialCard4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewPecasUtilizadas).EndInit();
             materialCard3.ResumeLayout(false);
             materialCard3.PerformLayout();
             ResumeLayout(false);
@@ -943,24 +946,24 @@
         private MaterialSkin.Controls.MaterialButton btnFinalizar;
         private MaterialSkin.Controls.MaterialCard materialCard5;
         private MaterialSkin.Controls.MaterialCard materialCard4;
-        private DataGridView dataGridView2;
+        private DataGridView dataGridViewPecasUtilizadas;
         private MaterialSkin.Controls.MaterialCard materialCard3;
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox3;
+        private MaterialSkin.Controls.MaterialTextBox txtDescricaoVenda;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         private MaterialSkin.Controls.MaterialLabel materialLabel5;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox5;
-        private MaterialSkin.Controls.MaterialButton materialButton2;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
-        private DateTimePicker dateTimePicker1;
+        private MaterialSkin.Controls.MaterialTextBox txtHorasTrabalhadas;
+        private MaterialSkin.Controls.MaterialButton btnAdicionarPeca;
+        private MaterialSkin.Controls.MaterialComboBox cbxPecasUtilizadas;
+        private DateTimePicker datePickerDataVenda;
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
         private MaterialSkin.Controls.MaterialLabel materialLabel10;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
         private MaterialSkin.Controls.MaterialLabel materialLabel9;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox7;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox6;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox8;
+        private MaterialSkin.Controls.MaterialTextBox txtPlacaMoto;
+        private MaterialSkin.Controls.MaterialTextBox txtModeloMoto;
+        private MaterialSkin.Controls.MaterialTextBox txtCliente;
         private MaterialSkin.Controls.MaterialButton btnCadastrarPeca;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;

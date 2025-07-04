@@ -16,6 +16,7 @@ namespace WeberMotosWF
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Grey900, Primary.Grey800, Primary.BlueGrey500, Accent.Amber100, TextShade.WHITE);
             CarregarPecasDatagrid();
+            cbxPecasUtilizadas.DataSource = ListarPecas();
         }
 
         private void btnCadastrarPeca_Click(object sender, EventArgs e)
@@ -53,6 +54,7 @@ namespace WeberMotosWF
             }
             LimparCamposCadastroPeca();
             CarregarPecasDatagrid();
+            cbxPecasUtilizadas.DataSource = ListarPecas();
         }
 
         private void LimparCamposCadastroPeca()
@@ -139,5 +141,99 @@ namespace WeberMotosWF
             CarregarPecasDatagrid();
             materialCardEditar.Visible = false;
         }
+
+        private void btnAdicionaPeca_Click(object sender, EventArgs e)
+        {
+            dataGridViewPecasUtilizadas.DefaultCellStyle.ForeColor = Color.Black;
+
+
+            using (var context = new OficinaDbContext())
+            {
+                var pecaSelecionada = context.pecas.First(pe => pe.Descricao.Equals(cbxPecasUtilizadas.Text));
+
+                bool pecaJaAdicionado = false;
+
+                foreach (DataGridViewRow row in dataGridViewPecasUtilizadas.Rows)
+                {
+                    if (row.Cells[0].Value != null && row.Cells[0].Value.Equals(pecaSelecionada.Descricao))
+                    {
+                        int quantidadeAtual = Convert.ToInt32(row.Cells[2].Value);
+                        row.Cells[2].Value = quantidadeAtual + 1;
+
+                        pecaJaAdicionado = true;
+                        break;
+                    }
+                }
+                if (!pecaJaAdicionado)
+                {
+                    dataGridViewPecasUtilizadas.Rows.Add(pecaSelecionada.Descricao, pecaSelecionada.PrecoVenda, 1);
+                }
+            }
+        }
+        private List<String> ListarPecas()
+        {
+            using (var context = new OficinaDbContext())
+            {
+                return context.pecas.ToList().Select(pe => pe.Descricao).ToList();
+
+            }
+        }
+
+        private void btnFinalizar_Click(object sender, EventArgs e)
+        {
+            Venda venda = new Venda();
+            VendaItem vendaItem = new VendaItem();
+
+            if (double.TryParse(txtHorasTrabalhadas.Text, out double horaTrabalhada))
+            {
+                venda.HorasTrabalhadas = horaTrabalhada;
+            }
+            else
+            {
+                MessageBox.Show("A hora deve ser um numero");
+                txtHorasTrabalhadas.Clear();
+                return;
+            }
+
+            venda.Descricao = txtDescricaoVenda.Text;
+            venda.DataManutencao = datePickerDataVenda.Value.ToUniversalTime();
+            venda.PlacaMoto = txtPlacaMoto.Text;
+            venda.ModeloMoto = txtModeloMoto.Text;
+            venda.ClienteNome = txtCliente.Text;
+            venda.FotoMoto = "Foto da moto";
+
+            double valorTotalVenda = 0;
+
+            foreach (DataGridViewRow row in dataGridViewPecasUtilizadas.Rows)
+            {
+                double preco = Convert.ToDouble(row.Cells[1].Value);
+                double quantidade = Convert.ToDouble(row.Cells[2].Value);
+                double totalItem = quantidade * preco;
+                valorTotalVenda += totalItem;
+            }
+
+            valorTotalVenda += venda.HorasTrabalhadas * 50;
+
+            venda.TotalVenda = valorTotalVenda;
+
+            using (var context = new OficinaDbContext())
+            {
+                context.vendas.Add(venda);
+                context.SaveChanges();
+            }
+            LimparCamposVenda();
+        }
+
+        private void LimparCamposVenda()
+        {
+            txtDescricaoVenda.Clear();
+            txtHorasTrabalhadas.Clear();
+            txtModeloMoto.Clear();
+            txtPlacaMoto.Clear();
+            txtCliente.Clear();
+
+            dataGridViewPecasUtilizadas.Rows.Clear();
+        }
     }
+
 }
