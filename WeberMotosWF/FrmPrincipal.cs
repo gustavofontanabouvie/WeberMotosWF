@@ -8,6 +8,14 @@ namespace WeberMotosWF
 {
     public partial class FrmPrincipal : MaterialForm
     {
+        private List<String> ListarPecas()
+        {
+            using (var context = new OficinaDbContext())
+            {
+                return context.pecas.ToList().Select(pe => pe.Descricao).ToList();
+
+            }
+        }
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -25,25 +33,21 @@ namespace WeberMotosWF
 
             novaPeca.Descricao = txtPecaDescricao.Text;
 
-            if (double.TryParse(txtPecaPreco.Text, out double precoCompra))
+            if (VerificarIsANumber(txtPecaPreco, out double precoCompra))
             {
                 novaPeca.UltimoPrecoCompra = precoCompra;
             }
             else
             {
-                MessageBox.Show("O preço deve ser um numero");
-                txtPecaPreco.Clear();
                 return;
             }
 
-            if (double.TryParse(txtPecaPrecoVenda.Text, out double precoVenda))
+            if (VerificarIsANumber(txtPecaPrecoVenda, out double precoVenda))
             {
                 novaPeca.PrecoVenda = precoVenda;
             }
             else
             {
-                MessageBox.Show("O preço deve ser um numero");
-                txtPecaPreco.Clear();
                 return;
             }
 
@@ -55,6 +59,20 @@ namespace WeberMotosWF
             LimparCamposCadastroPeca();
             CarregarPecasDatagrid();
             cbxPecasUtilizadas.DataSource = ListarPecas();
+        }
+
+        public bool VerificarIsANumber(MaterialTextBox campo, out double numero)
+        {
+            if (double.TryParse(campo.Text, out numero))
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("O campo deve ser um numero");
+                campo.Clear();
+                return false;
+            }
         }
 
         private void LimparCamposCadastroPeca()
@@ -114,17 +132,13 @@ namespace WeberMotosWF
             int rowIndex = dataGridViewPecas.CurrentCell.RowIndex;
             int idPeca = Convert.ToInt32(dataGridViewPecas.Rows[rowIndex].Cells[0].Value);
 
-            if (!double.TryParse(txtPrecoCompraEdit.Text, out double precoCompraEdit))
+            if (!VerificarIsANumber(txtPrecoCompraEdit, out double precoCompraEdit))
             {
-                MessageBox.Show("O preço deve ser um numero");
-                txtPecaPreco.Clear();
                 return;
             }
 
-            if (!double.TryParse(txtPrecoVendaEdit.Text, out double precoVendaEdit))
+            if (!VerificarIsANumber(txtPrecoVendaEdit, out double precoVendaEdit))
             {
-                MessageBox.Show("O preço deve ser um numero");
-                txtPecaPreco.Clear();
                 return;
             }
 
@@ -145,7 +159,6 @@ namespace WeberMotosWF
         private void btnAdicionaPeca_Click(object sender, EventArgs e)
         {
             dataGridViewPecasUtilizadas.DefaultCellStyle.ForeColor = Color.Black;
-
 
             using (var context = new OficinaDbContext())
             {
@@ -170,28 +183,18 @@ namespace WeberMotosWF
                 }
             }
         }
-        private List<String> ListarPecas()
-        {
-            using (var context = new OficinaDbContext())
-            {
-                return context.pecas.ToList().Select(pe => pe.Descricao).ToList();
-
-            }
-        }
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
             Venda venda = new Venda();
             VendaItem vendaItem = new VendaItem();
 
-            if (double.TryParse(txtHorasTrabalhadas.Text, out double horaTrabalhada))
+            if (VerificarIsANumber(txtHorasTrabalhadas, out double horaTrabalhada))
             {
                 venda.HorasTrabalhadas = horaTrabalhada;
             }
             else
             {
-                MessageBox.Show("A hora deve ser um numero");
-                txtHorasTrabalhadas.Clear();
                 return;
             }
 
