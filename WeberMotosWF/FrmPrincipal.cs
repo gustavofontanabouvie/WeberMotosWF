@@ -12,7 +12,7 @@ namespace WeberMotosWF
         {
             using (var context = new OficinaDbContext())
             {
-                return context.pecas.ToList();
+                return context.pecas.Where(pe => pe.Quantidade > 0).ToList();
             }
         }
         public FrmPrincipal()
@@ -73,7 +73,7 @@ namespace WeberMotosWF
             cbxPecasUtilizadas.DataSource = ListarPecas();
         }
 
-        public bool VerificarIsANumber(MaterialTextBox campo, out double numero)
+        private bool VerificarIsANumber(MaterialTextBox campo, out double numero)
         {
             if (double.TryParse(campo.Text, out numero))
             {
@@ -101,7 +101,7 @@ namespace WeberMotosWF
             PreencherCamposEdicaoPeca();
         }
 
-        public void CarregarPecasDatagrid()
+        private void CarregarPecasDatagrid()
         {
             dataGridViewPecas.Rows.Clear();
             dataGridViewPecas.DefaultCellStyle.ForeColor = Color.Black;
@@ -127,13 +127,14 @@ namespace WeberMotosWF
                 context.SaveChanges();
             }
             CarregarPecasDatagrid();
+            cbxPecasUtilizadas.DataSource = ListarPecas();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             materialCardEditar.Visible = false;
         }
-        public void PreencherCamposEdicaoPeca()
+        private void PreencherCamposEdicaoPeca()
         {
             txtDescricaoEdit.Text = dataGridViewPecas.CurrentRow.Cells[1].Value.ToString();
             txtPrecoCompraEdit.Text = dataGridViewPecas.CurrentRow.Cells[2].Value.ToString();
@@ -173,6 +174,7 @@ namespace WeberMotosWF
             }
 
             CarregarPecasDatagrid();
+            cbxPecasUtilizadas.DataSource = ListarPecas();
             materialCardEditar.Visible = false;
         }
 
@@ -190,9 +192,17 @@ namespace WeberMotosWF
                 {
                     if (row.Cells[0].Value != null && row.Cells[0].Value.Equals(pecaSelecionada.Descricao))
                     {
-                        int quantidadeAtual = Convert.ToInt32(row.Cells[2].Value);
-                        row.Cells[2].Value = quantidadeAtual + 1;
 
+                        int quantidadeAtual = Convert.ToInt32(row.Cells[2].Value);
+
+                        if (pecaSelecionada.Quantidade > quantidadeAtual)
+                        {
+                            row.Cells[2].Value = quantidadeAtual + 1;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Estoque insuficiente");
+                        }
                         pecaJaAdicionado = true;
 
                         break;
@@ -208,6 +218,7 @@ namespace WeberMotosWF
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
             Venda venda = new Venda();
+            Peca peca = new Peca();
 
             if (VerificarIsANumber(txtHorasTrabalhadas, out double horaTrabalhada))
             {
@@ -257,6 +268,9 @@ namespace WeberMotosWF
                         PrecoPeca = preco,
                         Quantidade = quantidade
                     });
+
+                    peca = context.pecas.First(pe => pe.Id == pecaId);
+                    peca.Quantidade -= quantidade;
                 }
 
                 valorTotalVenda += venda.HorasTrabalhadas * 50;
@@ -268,8 +282,8 @@ namespace WeberMotosWF
 
             MessageBox.Show("Venda finalizada com sucesso.");
             LimparCamposVenda();
+            CarregarPecasDatagrid();
         }
-
 
         private void LimparCamposVenda()
         {
