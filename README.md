@@ -1,6 +1,6 @@
 # Weber Motos 
 
-Aplicação Windows Forms desenvolvida em C# para controle de estoque e vendas para clientes em uma oficina mecânica.
+Aplicação Windows Forms desenvolvida em C# para controle de estoque e vendas em uma oficina mecânica.
 <br/>
 <br/>
 ## 🛠️ Tecnologias Utilizadas
