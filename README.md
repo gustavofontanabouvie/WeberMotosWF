@@ -8,6 +8,7 @@ Aplicação Windows Forms desenvolvida em C# para controle de estoque e vendas e
 - Windows Forms
 - Entity Framework Core
 - PostgreSQL
+- Neon Postgres
 - MaterialSkin (tema visual)
 
 ## 🚀 Funcionalidades
