@@ -1,4 +1,3 @@
-using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using WeberMotosWF.DataBase;
@@ -8,12 +7,12 @@ namespace WeberMotosWF
 {
     public partial class FrmPrincipal : MaterialForm
     {
-        private List<String> ListarPecas()
+
+        private List<Peca> ListarPecas()
         {
             using (var context = new OficinaDbContext())
             {
-                return context.pecas.ToList().Select(pe => pe.Descricao).ToList();
-
+                return context.pecas.ToList();
             }
         }
         public FrmPrincipal()
@@ -24,7 +23,11 @@ namespace WeberMotosWF
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Grey900, Primary.Grey800, Primary.BlueGrey500, Accent.Amber100, TextShade.WHITE);
             CarregarPecasDatagrid();
+
+
             cbxPecasUtilizadas.DataSource = ListarPecas();
+            cbxPecasUtilizadas.DisplayMember = "Descricao";
+            cbxPecasUtilizadas.ValueMember = "Id";
         }
 
         private void btnCadastrarPeca_Click(object sender, EventArgs e)
@@ -36,6 +39,15 @@ namespace WeberMotosWF
             if (VerificarIsANumber(txtPecaPreco, out double precoCompra))
             {
                 novaPeca.UltimoPrecoCompra = precoCompra;
+            }
+            else
+            {
+                return;
+            }
+
+            if (VerificarIsANumber(txtQuantidadeInicial, out double quantidadeInicial))
+            {
+                novaPeca.Quantidade = Convert.ToInt32(quantidadeInicial);
             }
             else
             {
@@ -80,6 +92,7 @@ namespace WeberMotosWF
             txtPecaDescricao.Clear();
             txtPecaPreco.Clear();
             txtPecaPrecoVenda.Clear();
+            txtQuantidadeInicial.Clear();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -97,7 +110,7 @@ namespace WeberMotosWF
             {
                 foreach (var peca in context.pecas)
                 {
-                    dataGridViewPecas.Rows.Add(peca.Id, peca.Descricao, peca.UltimoPrecoCompra, peca.PrecoVenda);
+                    dataGridViewPecas.Rows.Add(peca.Id, peca.Descricao, peca.UltimoPrecoCompra, peca.PrecoVenda, peca.Quantidade);
                 }
             }
         }
@@ -125,6 +138,7 @@ namespace WeberMotosWF
             txtDescricaoEdit.Text = dataGridViewPecas.CurrentRow.Cells[1].Value.ToString();
             txtPrecoCompraEdit.Text = dataGridViewPecas.CurrentRow.Cells[2].Value.ToString();
             txtPrecoVendaEdit.Text = dataGridViewPecas.CurrentRow.Cells[3].Value.ToString();
+            txtQuantidade.Text = dataGridViewPecas.CurrentRow.Cells[4].Value.ToString();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -133,6 +147,11 @@ namespace WeberMotosWF
             int idPeca = Convert.ToInt32(dataGridViewPecas.Rows[rowIndex].Cells[0].Value);
 
             if (!VerificarIsANumber(txtPrecoCompraEdit, out double precoCompraEdit))
+            {
+                return;
+            }
+
+            if (!VerificarIsANumber(txtQuantidade, out double quantidade))
             {
                 return;
             }
@@ -148,6 +167,7 @@ namespace WeberMotosWF
                 peca.Descricao = txtDescricaoEdit.Text;
                 peca.UltimoPrecoCompra = precoCompraEdit;
                 peca.PrecoVenda = precoVendaEdit;
+                peca.Quantidade = Convert.ToInt32(quantidade);
 
                 context.SaveChanges();
             }
@@ -162,7 +182,7 @@ namespace WeberMotosWF
 
             using (var context = new OficinaDbContext())
             {
-                var pecaSelecionada = context.pecas.First(pe => pe.Descricao.Equals(cbxPecasUtilizadas.Text));
+                var pecaSelecionada = (Peca)cbxPecasUtilizadas.SelectedItem!;
 
                 bool pecaJaAdicionado = false;
 
@@ -174,12 +194,13 @@ namespace WeberMotosWF
                         row.Cells[2].Value = quantidadeAtual + 1;
 
                         pecaJaAdicionado = true;
+
                         break;
                     }
                 }
                 if (!pecaJaAdicionado)
                 {
-                    dataGridViewPecasUtilizadas.Rows.Add(pecaSelecionada.Descricao, pecaSelecionada.PrecoVenda, 1);
+                    dataGridViewPecasUtilizadas.Rows.Add(pecaSelecionada.Descricao, pecaSelecionada.PrecoVenda, 1, pecaSelecionada.Id);
                 }
             }
         }
@@ -187,7 +208,6 @@ namespace WeberMotosWF
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
             Venda venda = new Venda();
-            VendaItem vendaItem = new VendaItem();
 
             if (VerificarIsANumber(txtHorasTrabalhadas, out double horaTrabalhada))
             {
@@ -205,27 +225,51 @@ namespace WeberMotosWF
             venda.ClienteNome = txtCliente.Text;
             venda.FotoMoto = "Foto da moto";
 
+            venda.Itens = new List<VendaItem>();
+
             double valorTotalVenda = 0;
-
-            foreach (DataGridViewRow row in dataGridViewPecasUtilizadas.Rows)
-            {
-                double preco = Convert.ToDouble(row.Cells[1].Value);
-                double quantidade = Convert.ToDouble(row.Cells[2].Value);
-                double totalItem = quantidade * preco;
-                valorTotalVenda += totalItem;
-            }
-
-            valorTotalVenda += venda.HorasTrabalhadas * 50;
-
-            venda.TotalVenda = valorTotalVenda;
 
             using (var context = new OficinaDbContext())
             {
+                foreach (DataGridViewRow row in dataGridViewPecasUtilizadas.Rows)
+                {
+                    if (row.IsNewRow || row.Cells[3].Value == null)
+                        continue;
+
+                    int pecaId = Convert.ToInt32(row.Cells[3].Value);
+
+                    // Verifica se a peça existe no banco
+                    var pecaExiste = context.pecas.Any(p => p.Id == pecaId);
+                    if (!pecaExiste)
+                    {
+                        MessageBox.Show($"Peça com ID {pecaId} não existe.");
+                        return;
+                    }
+
+                    double preco = Convert.ToDouble(row.Cells[1].Value);
+                    int quantidade = Convert.ToInt32(row.Cells[2].Value);
+                    double totalItem = quantidade * preco;
+                    valorTotalVenda += totalItem;
+
+                    venda.Itens.Add(new VendaItem
+                    {
+                        PecaId = pecaId,
+                        PrecoPeca = preco,
+                        Quantidade = quantidade
+                    });
+                }
+
+                valorTotalVenda += venda.HorasTrabalhadas * 50;
+                venda.TotalVenda = valorTotalVenda;
+
                 context.vendas.Add(venda);
                 context.SaveChanges();
             }
+
+            MessageBox.Show("Venda finalizada com sucesso.");
             LimparCamposVenda();
         }
+
 
         private void LimparCamposVenda()
         {

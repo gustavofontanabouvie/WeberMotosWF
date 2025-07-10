@@ -20,7 +20,8 @@ namespace WeberMotosWF.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Descricao = table.Column<string>(type: "text", nullable: false),
                     UltimoPrecoCompra = table.Column<double>(type: "double precision", nullable: false),
-                    PrecoVenda = table.Column<double>(type: "double precision", nullable: false)
+                    PrecoVenda = table.Column<double>(type: "double precision", nullable: false),
+                    Quantidade = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,8 +57,7 @@ namespace WeberMotosWF.Migrations
                     VendaId = table.Column<int>(type: "integer", nullable: false),
                     PecaId = table.Column<int>(type: "integer", nullable: false),
                     Quantidade = table.Column<int>(type: "integer", nullable: false),
-                    PrecoPeca = table.Column<double>(type: "double precision", nullable: false),
-                    VendaId1 = table.Column<int>(type: "integer", nullable: false)
+                    PrecoPeca = table.Column<double>(type: "double precision", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,12 +74,6 @@ namespace WeberMotosWF.Migrations
                         principalTable: "vendas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_vendaItens_vendas_VendaId1",
-                        column: x => x.VendaId1,
-                        principalTable: "vendas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -91,11 +85,6 @@ namespace WeberMotosWF.Migrations
                 name: "IX_vendaItens_VendaId",
                 table: "vendaItens",
                 column: "VendaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_vendaItens_VendaId1",
-                table: "vendaItens",
-                column: "VendaId1");
         }
 
         /// <inheritdoc />

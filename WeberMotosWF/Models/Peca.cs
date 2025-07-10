@@ -16,6 +16,6 @@ namespace WeberMotosWF.Models
         public string Descricao { get; set; }
         public double UltimoPrecoCompra { get; set; }
         public double PrecoVenda { get; set; }
-
+        public int Quantidade { get; set; }
     }
 }

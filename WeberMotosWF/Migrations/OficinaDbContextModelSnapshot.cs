@@ -37,6 +37,9 @@ namespace WeberMotosWF.Migrations
                     b.Property<double>("PrecoVenda")
                         .HasColumnType("double precision");
 
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("integer");
+
                     b.Property<double>("UltimoPrecoCompra")
                         .HasColumnType("double precision");
 
@@ -107,16 +110,11 @@ namespace WeberMotosWF.Migrations
                     b.Property<int>("VendaId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("VendaId1")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
                     b.HasIndex("PecaId");
 
                     b.HasIndex("VendaId");
-
-                    b.HasIndex("VendaId1");
 
                     b.ToTable("vendaItens");
                 });
@@ -129,15 +127,9 @@ namespace WeberMotosWF.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WeberMotosWF.Models.Venda", null)
+                    b.HasOne("WeberMotosWF.Models.Venda", "Venda")
                         .WithMany("Itens")
                         .HasForeignKey("VendaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WeberMotosWF.Models.Venda", "Venda")
-                        .WithMany()
-                        .HasForeignKey("VendaId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
